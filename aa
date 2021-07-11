@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jul 11 02:26:04 2021
+
+@author: PipiHi
+"""
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn import datasets
+iris = datasets.load_iris()
+penguins = sns.load_dataset("penguins")
+data = iris["data"]
+sns.set()  
+
+# form = {
+#     "title": "A",
+#     "x": "bill_length_mm",
+#     "x_name": "x",
+#     "y_name": "y",
+#     "bins": 10,
+#     "hue": "island",
+#     # "hue": None,
+#     "x_limit": (0,20)
+#     } 
+def var_continuous_count_displot(data, form):
+    # form = {
+    #     "title": "A",
+    #     "x": "bill_length_mm",
+    #     "x_name": "x",
+    #     "y_name": "y",
+    #     "bins": 10,
+    #     "hue": None,
+    #     "x_limit": (0,20)
+    #     } 
+    sns.displot(data = data,
+                x = form["x"],
+                kde = True,
+                color = "g",
+                bins = form["bins"],
+                rug = True,
+                hue = form["hue"],
+                palette = "husl",
+                multiple = "stack" # 是否疊加，預設無
+                )
+form = {
+    "title": "A",
+    "x": "island",
+    "x_name": "x",
+    "y_name": "y",
+    } 
+def var_category_count_displot(data, form):
+    sns.countplot(data = data,
+                  palette = "husl",
+                  x = form["x"])
+
+
+
+
+var_category_count_displot(penguins, form)
